@@ -353,3 +353,18 @@ in SYSTEM (every command now has a handle; replies land in the log), a
 link -- zombie links are extinct), and `PORT ADOPT <id>` + a Re-link
 button per link (re-attach an open COM to a slot-less bridge after a hub
 reboot instead of delete-and-recreate).
+
+
+ESP8266:
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  min_auth_mode: WPA2
+  power_save_mode: none -----------------------------------> More reliable (no packet drop)
+
+esphome:
+  name: wemo-test
+  friendly_name: WEMO-TEST
+  platformio_options:
+    board_build.f_cpu: 160000000L -----------------------> More Speed
+
