@@ -1,3 +1,5 @@
+<img width="1901" height="924" alt="image" src="https://github.com/user-attachments/assets/75982f11-30f7-48dc-b99d-d8ce03d6cf6b" />
+
 # web_serial
 
 ![ci](https://github.com/kaboom748/web_serial/actions/workflows/ci.yml/badge.svg)
