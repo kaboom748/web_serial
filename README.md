@@ -1,3 +1,5 @@
+----> UDP Supported - ESP8266 :)
+
 <img width="1901" height="924" alt="image" src="https://github.com/user-attachments/assets/75982f11-30f7-48dc-b99d-d8ce03d6cf6b" />
 <img width="1887" height="896" alt="image" src="https://github.com/user-attachments/assets/bae8bbed-4d16-4bd0-ad80-086200d1675a" />
 
