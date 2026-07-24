@@ -38,6 +38,18 @@
 
 ## JOURNAL CHRONOLOGIQUE (verbatim, ordre d'ecriture)
 
+## CIYAML -- the release's first field bug: a bare colon killed the workflow
+- GitHub verdict on both runs: 'Invalid workflow file ci.yml#L26'. The
+  secrets line ('- run: printf ...wifi_ssid: "..."') carried ': ' inside
+  a PLAIN yaml scalar -- the parser reads a mapping and dies before any
+  job starts. Fix: literal block scalar with two echo lines. The gate now
+  yaml-validates the workflow AND the three example yamls (!secret
+  neutralized for parsing) before any ship. Repo-side fix for the captain:
+  one in-browser edit of .github/workflows/ci.yml.
+- Everything else verified live on github.com: layout complete, LICENSE
+  GPL-3.0, About + 10 topics, README fully rendered (badge, install,
+  new sections). Releases still empty -- Etape 6 after the first green.
+
 ## RELEASE100 -- v1.0.0, l'officialisation
 - README refondu : le WARNING ALPHA (devenu faux) remplace par le statut
   field-hardened chiffre ; badge CI ; install external_components
