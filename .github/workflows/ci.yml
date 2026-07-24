@@ -1,0 +1,27 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  host-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - run: bash tests/host/run_all.sh
+  compile:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {yaml: examples/web_serial_esp8266.yaml,   name: esp8266}
+          - {yaml: examples/web_serial_esp32.yaml,     name: esp32-arduino}
+          - {yaml: examples/web_serial_esp32_idf.yaml, name: esp32-idf}
+    name: ${{ matrix.name }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install esphome
+      - run: printf 'wifi_ssid: "ci-bench"\nwifi_password: "ci-password-123"\n' > examples/secrets.yaml
+      - run: esphome compile ${{ matrix.yaml }}
