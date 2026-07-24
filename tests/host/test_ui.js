@@ -354,7 +354,7 @@ setTimeout(() => {
   var cols = []; for (var si = 0; si < spans.length; si++) if (spans[si].textContent) cols.push(spans[si].style.color);
   check('partyline: two sources, one data tint', cols.length >= 3 && cols[0] === cols[1]);
   check('partyline: echo stays its own gray, apart from data', cols[2] !== cols[0]);
-  var src = require('fs').readFileSync('/tmp/pagePL.html', 'utf8');
+  var src = require('fs').readFileSync(process.argv[2], 'utf8');
   check('partyline: the legacy reader display is gone', src.indexOf('rawFeed(c.slot') < 0 && src.indexOf('vlan terminal') >= 0);
 
   /* CONSRAW: the truthful vlan terminal (route B contract) */
