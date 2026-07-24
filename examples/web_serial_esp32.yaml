@@ -1,0 +1,33 @@
+# web_serial HUB on an ESP32: web console/tap + TCP232 raw port + PC bridge.
+# Wire a USB-serial adapter (or a Modbus/RS485 transceiver, or a DMX shield)
+# to the pins below. RS485: uncomment de_pin. Point PuTTY at <ip>:2323.
+esphome:
+  name: web-serial-esp32
+esp32:
+  board: esp32dev
+  framework: {type: arduino}
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+logger:
+api:
+ota:
+  - platform: esphome
+    password: ""
+external_components:
+  - source: {type: local, path: ../components}
+    components: [web_serial]
+
+uart:
+  id: ser_bus
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 115200
+
+web_serial:
+  port: 8891
+  uart_id: ser_bus
+  tcp_port: 2323
+  # de_pin: GPIO4      # RS485 half-duplex transceivers (MAX485 DE+RE tied)
+  # owner: false       # set false if another component (modbus...) reads ser_bus
+  gap_ms: 10
