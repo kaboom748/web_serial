@@ -370,3 +370,6 @@ esphome:
   platformio_options:
     board_build.f_cpu: 160000000L -----------------------> More Speed
 
+
+
+The de_pin is required when using an RS-485 transceiver for DMX output. It controls the transceiver's Driver Enable (DE) pin, allowing it to drive the DMX bus only during transmission. Without configuring de_pin, the transceiver may remain disabled, preventing any DMX data from being transmitted. [BUG]
