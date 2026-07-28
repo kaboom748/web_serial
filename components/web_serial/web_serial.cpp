@@ -3769,7 +3769,11 @@ phase_skipped:;
         bool red_back = this->out_.size() > WSER_OUT_SOFT / 2;
         if (red_heap || red_duty || red_back) {
           uint32_t nq = this->drain_quota_ / 2;
+#ifdef USE_ESP8266
+          this->drain_quota_ = nq < 256 ? 256 : nq;
+#else
           this->drain_quota_ = nq < 64 ? 64 : nq;
+#endif
           this->quota_dir_ = -1;
           this->throttle_events_++;
           this->throttle_cause_ = red_heap ? 1 : (red_duty ? 2 : 3);
