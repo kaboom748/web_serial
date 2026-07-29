@@ -373,3 +373,5 @@ esphome:
 
 
 The de_pin is required when using an RS-485 transceiver for DMX output. It controls the transceiver's Driver Enable (DE) pin, allowing it to drive the DMX bus only during transmission. Without configuring de_pin, the transceiver may remain disabled, preventing any DMX data from being transmitted. [BUG]
+
+> **Standalone use:** if the device isn't paired with Home Assistant, set `api: reboot_timeout: 0s`. ESPHome's default 15-minute API watchdog reboots the node when no native-API client connects — web_serial traffic on the HTTP/TCP ports does not count — which silently kills your serial session every 900 s.
